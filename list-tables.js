@@ -15,36 +15,10 @@ const callback = (err, data) => {
 
 dynamodb.listTables({}, callback);
 
-dynamodb.describeTable({
-  TableName: 'td_notes',
+dynamodb.updateTable({
+  TableName: 'td_notes_sdk',
+  ProvisionedThroughput: {
+    ReadCapacityUnits: 2,
+    WriteCapacityUnits: 1
+  }
 }, callback);
-
-dynamodb.createTable({
-    TableName: 'td_notes_sdk',
-    AttributeDefinitions: [
-      {
-        AttributeName: 'user_id',
-        AttributeType: 'S',
-      },
-      {
-        AttributeName: 'timestamp',
-        AttributeType: 'N',
-      },
-    ],
-    KeySchema: [
-      {
-        AttributeName: 'user_id',
-        KeyType: 'HASH', // Partition Key
-      },
-      {
-        AttributeName: 'timestamp',
-        KeyType: 'RANGE',  // Sort Key
-      },
-    ],
-    ProvisionedThroughput: {
-      ReadCapacityUnits: 1,
-      WriteCapacityUnits: 1
-    }
-  },
-  callback,
-);
