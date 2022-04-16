@@ -15,10 +15,6 @@ const callback = (err, data) => {
 
 dynamodb.listTables({}, callback);
 
-dynamodb.updateTable({
+dynamodb.deleteTable({
   TableName: 'td_notes_sdk',
-  ProvisionedThroughput: {
-    ReadCapacityUnits: 2,
-    WriteCapacityUnits: 1
-  }
-}, callback);
+}, callback)
