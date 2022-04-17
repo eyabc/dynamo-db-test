@@ -14,12 +14,18 @@ const callback = (err, data) => {
   }
 };
 
-docClient.put({
-  TableName: 'td_notes',
-  Item: {
+const TD_NOTES_TABLE_NAME = 'td_notes';
+docClient.update({
+  TableName: TD_NOTES_TABLE_NAME,
+  Key: {
     user_id: 'eunyoung',
-    timestamp: 1,
-    title: 'changed title',
-    content: 'changed content',
+    timestamp: 1
+  },
+  UpdateExpression: 'set #t = :t',
+  ExpressionAttributeNames: {
+    '#t': 'title'
+  },
+  ExpressionAttributeValues: {
+    ':t': "Updated title"
   }
 }, callback)
