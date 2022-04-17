@@ -15,17 +15,10 @@ const callback = (err, data) => {
 };
 
 const TD_NOTES_TABLE_NAME = 'td_notes';
-docClient.update({
+docClient.delete({
   TableName: TD_NOTES_TABLE_NAME,
   Key: {
     user_id: 'eunyoung',
     timestamp: 1
   },
-  UpdateExpression: 'set #t = :t',
-  ExpressionAttributeNames: {
-    '#t': 'title'
-  },
-  ExpressionAttributeValues: {
-    ':t': "Updated title"
-  }
 }, callback)
