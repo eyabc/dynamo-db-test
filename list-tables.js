@@ -15,10 +15,38 @@ const callback = (err, data) => {
 };
 
 const TD_NOTES_TABLE_NAME = 'td_notes';
-docClient.delete({
-  TableName: TD_NOTES_TABLE_NAME,
-  Key: {
-    user_id: 'eunyoung',
-    timestamp: 1
+
+docClient.batchWrite({
+  RequestItems: {
+    [TD_NOTES_TABLE_NAME]: [
+      {
+        DeleteRequest: {
+          Key: {
+            user_id: 'd923lf',
+            timestamp: 1649690707,
+          },
+        },
+      },
+      {
+        PutRequest: {
+          Item: {
+            user_id: 'ey',
+            timestamp: 123,
+            title: 'title 123',
+            content: 'content 123',
+          },
+        }
+      },
+      {
+        PutRequest: {
+          Item: {
+            user_id: 'ey',
+            timestamp: 1234,
+            title: 'title 1234',
+            content: 'content 1234',
+          },
+        },
+      },
+    ],
   },
-}, callback)
+}, callback);
