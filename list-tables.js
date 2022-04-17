@@ -19,7 +19,7 @@ docClient.put({
   Item: {
     user_id: 'eunyoung',
     timestamp: 1,
-    title: 'my title',
-    content: 'my content',
+    title: 'changed title',
+    content: 'changed content',
   }
 }, callback)
