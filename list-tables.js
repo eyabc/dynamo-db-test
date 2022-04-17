@@ -4,6 +4,7 @@ AWS.config.update({
 });
 
 const dynamodb = new AWS.DynamoDB();
+const docClient = new AWS.DynamoDB.DocumentClient();
 
 const callback = (err, data) => {
   if (err) {
@@ -13,8 +14,12 @@ const callback = (err, data) => {
   }
 };
 
-dynamodb.listTables({}, callback);
-
-dynamodb.deleteTable({
-  TableName: 'td_notes_sdk',
+docClient.put({
+  TableName: 'td_notes',
+  Item: {
+    user_id: 'eunyoung',
+    timestamp: 1,
+    title: 'my title',
+    content: 'my content',
+  }
 }, callback)
